@@ -58,3 +58,18 @@ messages = [message_system, message]
 response = client.chat.completions.create(model=model, messages=messages, response_format=response_format)
 answer = response.choices[0].message.content
 print(answer)
+
+
+
+
+
+
+# reading json file and parsing it into a pydantic model
+import json
+raw_json = answer
+parsed_json = json.loads(raw_json)
+ticket = Ticket(**parsed_json)
+
+print(ticket.name)
+print(ticket.email)
+print(ticket.issue)
